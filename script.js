@@ -26,15 +26,25 @@ gridSizeApply.addEventListener("click", () => {
     etchASketch()
 });
 
+let gridColorClear = document.getElementById("gridColorClear")
+gridColorClear.addEventListener("click", () => {
+    etchASketch('clear')
+});
+
 
   makeRows(16, 16);
   etchASketch()
 
-function etchASketch(){
+function etchASketch(colour){
     divs = document.querySelectorAll('.grid-item')
     divs.forEach(div => {
+        if (colour == "clear"){
+            div.style.backgroundColor = "";
+        } else {}
         div.addEventListener("mouseover", () => {
-        div.style.backgroundColor = "black";
+           
+                div.style.backgroundColor = "black";
+            
         });
     }); 
 };
