@@ -28,6 +28,7 @@ gridSizeApply.addEventListener("click", () => {
 
 
   makeRows(16, 16);
+  etchASketch()
 
 function etchASketch(){
     divs = document.querySelectorAll('.grid-item')
