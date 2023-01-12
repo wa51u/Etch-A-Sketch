@@ -6,15 +6,26 @@
   #container
     {
     display: grid;
-    grid-gap: 0.1em;
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    grid-template-rows: repeat(var(--grid-rows), auto);
+    grid-template-columns: repeat(var(--grid-cols), auto);
+    width: 640px;
+    height: 640px;
+    max-width: 640px;
+    max-height: 640px;
   }
   
   .grid-item {
     padding: 1em;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(223, 223, 223, 0.541);
     text-align: center;
+    height: auto;
+    width: auto;
+    min-width: 2px;
+    min-height: 2px;
+    margin: 0;
+    padding: 0;
+
+
   }
   
   html{
