@@ -1,7 +1,7 @@
 
 const container = document.getElementById("container");
 
-function makeRows(rows, cols) {
+function makeRows(rows = 16, cols = 16) {
     if (rows > 100){
         alert("maximum value is 100")
         rows = 100
@@ -19,7 +19,6 @@ function makeRows(rows, cols) {
 let gridSize = document.getElementById("gridSize");
 let gridSizeApply = document.getElementById("gridSizeApply")
 
-
 gridSizeApply.addEventListener("click", () => {
     remove()
     makeRows(gridSize.value, gridSize.value);
@@ -28,29 +27,77 @@ gridSizeApply.addEventListener("click", () => {
 
 let gridColorClear = document.getElementById("gridColorClear")
 gridColorClear.addEventListener("click", () => {
-    etchASketch('clear')
+    etchASketch("clear")
+});
+
+let randomColor = document.getElementById("randomColor")
+randomColor.addEventListener("click", () => {
+     etchASketch("randColor")
+});
+let blackColor = document.getElementById("blackColor")
+blackColor.addEventListener("click", () => {
+     etchASketch("black")
+});
+
+let grayScale = document.getElementById("grayScale")
+grayScale.addEventListener("click", () => {
+     etchASketch("gray")
 });
 
 
-  makeRows(16, 16);
-  etchASketch()
-
-function etchASketch(colour){
-    divs = document.querySelectorAll('.grid-item')
+ 
+  
+function etchASketch(color = "black"){
+    divs = document.querySelectorAll(".grid-item")
     divs.forEach(div => {
-        if (colour == "clear"){
+        if (color == "clear"){
             div.style.backgroundColor = "";
-        } else {}
-        div.addEventListener("mouseover", () => {
-           
-                div.style.backgroundColor = "black";
+        } else if (color == "randColor"){
+            div.addEventListener("mouseover", () => {
+            div.style.backgroundColor = randColor();
+            });
+        }  else if (color == "black"){
+            div.addEventListener("mouseover", () => {
+            div.style.backgroundColor = "black";
+
             
-        });
-    }); 
+            });
+        } else if (color == "gray"){
+            div.addEventListener("mouseover", () => {
+            gray(div)
+            
+            });
+        }
+    });
 };
+
 function remove(){
     divs = document.querySelectorAll('.grid-item')
     divs.forEach(div => {
         div.remove()
     });
 };
+
+function randColor(){
+    let tempArr = [] 
+    for (i=0; i<3; i++){
+        let random =  Math.floor(Math.random() * 255)
+        tempArr.push(random)
+    }
+    return (`rgb(${tempArr.toString()})`)
+}
+
+function gray(div){
+    //console.log(div.style.cssText)
+    let alfaStr = div.style.backgroundColor.substr(14, 3)
+    let alfaNr = parseInt(alfaStr)
+    alfaNr = alfaNr + 0.1
+    div.style.backgroundColor = `rgba(0,0,0,${alfaNr})`;
+    console.log(alfaNr)
+
+}
+
+
+
+makeRows();
+etchASketch()
