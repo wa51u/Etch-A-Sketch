@@ -3,11 +3,12 @@
     --grid-rows: 1;
   }  
   
-  html{
+  html {
     background-color: grey;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
-  body{
+  body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,22 +17,23 @@
 
   h1 {
     text-align:center;
+    text-shadow: 2px 2px darkgray
   }
-  #gridSize{
+
+  #gridSize {
     width: 40px;
-   
   }
   
-
-  .controlPanel{
-    padding: 10px 0 15px 0 ;
-    margin: 10px 0 15px 0 ;
-
-    border: 1px solid red;
+  .controlPanel {
+    padding: 10px 0 10px 0 ;
+    margin: 0px 0 10px 0 ;
+    background-color: rgb(146, 146, 146);
+    text-align:center;
+    box-shadow: 2px 2px 2px 1px gray;
+    border-radius: 2px;
   }
 
-  #container
-    {
+  #container {
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), auto);
     grid-template-columns: repeat(var(--grid-cols), auto);
@@ -39,8 +41,8 @@
     height: 640px;
     max-width: 640px;
     max-height: 640px;
-    
-
+    box-shadow: 2px 2px 2px 1px gray;
+    border-radius: 2px;
   }
   
   .grid-item {
@@ -53,6 +55,52 @@
     min-height: 2px;
     margin: 0;
     padding: 0;
-
+    border-radius: 1px;
+  }
+  
+  .mainContainer {
+    background-color: darkgray;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; 
   }
 
+  button, input,label {
+    border-radius: 2px;
+    border-width: 0;
+    color: #333333;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  button, input {
+    background-color: rgba(0, 0, 0, 0.182);
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+
+  #gridSizeApply{
+    margin-right: 15px;
+  }
+
+  #blackColor{
+    color: black;
+  }
+
+  #grayScale{
+    color: #1d1d1d;
+  }
+
+  #randomColor{
+    color: rgb(206, 45, 45);
+  }
