@@ -2,10 +2,10 @@ let color = "";
 const container = document.getElementById("container");
 
 function makeRows(rows = 16, cols = 16) {
-    if (rows > 100){
-        alert("maximum value is 100")
-        rows = 100
-        cols = 100
+    if (rows > 40){
+        alert("maximum value is 40")
+        rows = 40
+        cols = 40
     }
     container.style.setProperty('--grid-rows', rows);
     container.style.setProperty('--grid-cols', cols);
