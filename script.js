@@ -1,4 +1,4 @@
-
+let color = ""
 const container = document.getElementById("container");
 
 function makeRows(rows = 16, cols = 16) {
@@ -27,7 +27,7 @@ gridSizeApply.addEventListener("click", () => {
 
 let gridColorClear = document.getElementById("gridColorClear")
 gridColorClear.addEventListener("click", () => {
-    etchASketch("clear")
+    etchASketch("stop")
 });
 
 let randomColor = document.getElementById("randomColor")
@@ -43,33 +43,49 @@ let grayScale = document.getElementById("grayScale")
 grayScale.addEventListener("click", () => {
      etchASketch("gray")
 });
-
-
- 
-  
-function etchASketch(color = "black"){
+ //new function whith remove option
+ function etchASketch(color = "black"){
+   
+    console.log(`color ${color}`)
     divs = document.querySelectorAll(".grid-item")
     divs.forEach(div => {
-        if (color == "clear"){
+        if (color === "stop"){
             div.style.backgroundColor = "";
-        } else if (color == "randColor"){
-            div.addEventListener("mouseover", () => {
-            div.style.backgroundColor = randColor();
-            });
-        }  else if (color == "black"){
-            div.addEventListener("mouseover", () => {
-            div.style.backgroundColor = "black";
-
-            
-            });
-        } else if (color == "gray"){
-            div.addEventListener("mouseover", () => {
-            gray(div)
-            
-            });
+            div.style.className = "";
+        
         }
+
+        function mouseOverDivs(){
+            if (color === "randColor"){
+            // div.addEventListener("mouseover", () => {
+                div.style.backgroundColor = randColor();
+                console.log('rand'+color)
+            }  else if (color === "black"){
+                div.style.backgroundColor = "black";
+            } else if (color === "gray"){
+                gray(div) 
+            }
+        }    
+
+        div.addEventListener('mouseover', mouseOverDivs)
+
+        //removing  old addEvent after pressing another button
+        randomColor.addEventListener("click", () => {
+            div.removeEventListener('mouseover', mouseOverDivs)
+        });
+    
+        blackColor.addEventListener("click", () => {
+            div.removeEventListener('mouseover', mouseOverDivs)
+        });
+
+        grayScale.addEventListener("click", () => {
+            div.removeEventListener('mouseover', mouseOverDivs)
+        });
     });
 };
+
+
+
 
 function remove(){
     divs = document.querySelectorAll('.grid-item')
@@ -88,13 +104,20 @@ function randColor(){
 }
 
 function gray(div){
-    //console.log(div.style.cssText)
-    let alfaStr = div.style.backgroundColor.substr(14, 3)
-    let alfaNr = parseInt(alfaStr)
-    alfaNr = alfaNr + 0.1
-    div.style.backgroundColor = `rgba(0,0,0,${alfaNr})`;
-    console.log(alfaNr)
 
+    console.log("first console.log" +div.style.backgroundColor)
+    if (div.style.backgroundColor == "rgba(0, 0, 0, 0.9)"){
+    return 0
+    }
+
+    if (div.style.backgroundColor.substr(0,13) != "rgba(0, 0, 0,"){
+        div.style.backgroundColor = `rgba(0,0,0,0.1)`;
+    } else {
+        let alfaStr = div.style.backgroundColor.substr(14, 3)
+        let alfaNr = Number(alfaStr)
+        alfaNr = alfaNr + 0.1
+        div.style.backgroundColor = `rgba(0,0,0,${alfaNr})`;
+    }
 }
 
 
